@@ -1,0 +1,6 @@
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/OOP/bin/Debug/OOP.exe
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/OOP/bin/Debug/OOP.pdb
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/OOP/obj/Debug/OOP.csproj.AssemblyReference.cache
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/OOP/obj/Debug/OOP.csproj.CoreCompileInputs.cache
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/OOP/obj/Debug/OOP.exe
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/OOP/obj/Debug/OOP.pdb
