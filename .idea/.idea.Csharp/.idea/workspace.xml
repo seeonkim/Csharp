@@ -10,11 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09280e1b-2f0d-48b0-afec-77528f95eb3c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/OOP/Domain/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Csharp.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Csharp.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/obj/Debug/OOP.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/obj/Debug/OOP.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataStructure/Basic/Array.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataStructure/Basic/LinkedList.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataStructure/Study/스크린샷 2023-11-05 오전 11.36.19.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Csharp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Csharp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/DataStructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/DataStructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,13 +123,28 @@
       <workItem from="1698545235212" duration="79000" />
       <workItem from="1698545331230" duration="3450000" />
       <workItem from="1698646617732" duration="1027000" />
+      <workItem from="1699146363683" duration="8850000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+>>>>>>> ae602674746352e9cf5dd676248d1d5f561116d0
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <option name="LAST_COMMIT_MESSAGE" value="" />

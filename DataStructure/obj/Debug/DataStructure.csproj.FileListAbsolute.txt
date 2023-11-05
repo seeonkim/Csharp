@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\82109\RiderProjects\Csharp\DataStructure\bin\Debug\DataStructure.exe
 C:\Users\82109\RiderProjects\Csharp\DataStructure\bin\Debug\DataStructure.pdb
 C:\Users\82109\RiderProjects\Csharp\DataStructure\obj\Debug\DataStructure.csproj.AssemblyReference.cache
@@ -5,3 +6,11 @@ C:\Users\82109\RiderProjects\Csharp\DataStructure\obj\Debug\DataStructure.csproj
 C:\Users\82109\RiderProjects\Csharp\DataStructure\obj\Debug\DataStructure.csproj.CoreCompileInputs.cache
 C:\Users\82109\RiderProjects\Csharp\DataStructure\obj\Debug\DataStructure.exe
 C:\Users\82109\RiderProjects\Csharp\DataStructure\obj\Debug\DataStructure.pdb
+=======
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/DataStructure/bin/Debug/DataStructure.exe
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/DataStructure/bin/Debug/DataStructure.pdb
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/DataStructure/obj/Debug/DataStructure.csproj.AssemblyReference.cache
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/DataStructure/obj/Debug/DataStructure.csproj.CoreCompileInputs.cache
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/DataStructure/obj/Debug/DataStructure.exe
+/Users/happiness/Developer/Lecture/Sunday-2/Csharp/DataStructure/obj/Debug/DataStructure.pdb
+>>>>>>> ae602674746352e9cf5dd676248d1d5f561116d0

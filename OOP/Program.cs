@@ -38,7 +38,7 @@ namespace OOP {
                 // 돈이 200만원 넘게 있으면 맥북을 구매할 수 있다
                 // 그 아래면 맥북을 구매할 수 없음
                 if (money >= 2000000) {
-                    Console.WriteLine($"{name}은 {money}이나 가지고 있어서 맥북 에어를 구매할 수 없다");
+                    Consolegit.WriteLine($"{name}은 {money}이나 가지고 있어서 맥북 에어를 구매할 수 없다");
                 }
                 else {
                     Console.WriteLine($"{name}은 {money}을 가지고 있어서 맥북 에어를 구매할 수 있다");
