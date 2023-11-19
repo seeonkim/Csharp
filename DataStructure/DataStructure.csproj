@@ -46,10 +46,13 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Study\스크린샷 2023-11-05 오전 10.39.26.png" />
-      <Content Include="Study\스크린샷 2023-11-05 오전 10.52.12.png" />
-      <Content Include="Study\스크린샷 2023-11-05 오전 11.06.19.png" />
-      <Content Include="Study\스크린샷 2023-11-05 오전 11.36.19.png" />
+      <Content Include="Study\Array\스크린샷 2023-11-05 오전 10.39.26.png" />
+      <Content Include="Study\Array\스크린샷 2023-11-05 오전 10.52.12.png" />
+      <Content Include="Study\Array\스크린샷 2023-11-05 오전 11.06.19.png" />
+      <Content Include="Study\HashMap\스크린샷 2023-11-19 오전 11.08.11.png" />
+      <Content Include="Study\HashMap\스크린샷 2023-11-19 오전 11.18.29.png" />
+      <Content Include="Study\HashMap\스크린샷 2023-11-19 오전 11.20.05.png" />
+      <Content Include="Study\LinkedList\스크린샷 2023-11-05 오전 11.36.19.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
