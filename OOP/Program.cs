@@ -1,5 +1,7 @@
 ﻿using System;
 using OOP.Domain;
+using OOP.UI;
+
 
 namespace OOP {
     internal class Program {
@@ -38,7 +40,7 @@ namespace OOP {
                 // 돈이 200만원 넘게 있으면 맥북을 구매할 수 있다
                 // 그 아래면 맥북을 구매할 수 없음
                 if (money >= 2000000) {
-                    Consolegit.WriteLine($"{name}은 {money}이나 가지고 있어서 맥북 에어를 구매할 수 없다");
+                    Console.WriteLine($"{name}은 {money}이나 가지고 있어서 맥북 에어를 구매할 수 없다");
                 }
                 else {
                     Console.WriteLine($"{name}은 {money}을 가지고 있어서 맥북 에어를 구매할 수 있다");
@@ -73,8 +75,10 @@ namespace OOP {
                 Console.WriteLine(n);
             }
 
-            User user1 = new User("김세언");
-            Console.WriteLine(user1.GetName());
+            User user1 = new User("abc", "apple", "seeon", 5000, "Buyer");
+            Console.WriteLine(user1.GetNickname());
+            AuthScreen authScreen = new AuthScreen();
+            authScreen.Auth();
         }
     }
 }
