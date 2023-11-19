@@ -8,10 +8,9 @@ namespace OOP.Repositoryy {
         object findProductById(string productId);
         ArrayList findSellerProductsByEmail(string email);
         ArrayList findSellingProducts();
-
     }
-    public class ProductRepository {
-        
+
+    public class ProductRepository : BaseRepository, IProductRepository {
         public string createProductId() {
             throw new System.NotImplementedException();
         }

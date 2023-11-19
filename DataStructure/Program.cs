@@ -1,11 +1,12 @@
-﻿using DataStructure.Basic;
+﻿using System;
+using DataStructure.Basic;
 
 namespace DataStructure {
     internal class Program {
         public static void Main(string[] args) {
             // 데이터를 효율적으로 사용하려면: 자료구조
             // 메모리 = RAM = Random Access Memory
-            
+
             // 임의 접근 = 접근하는데 O(1)의 시간 복잡도가 걸린다
             // 순차 접근 = 접근하는데 O(n)의 시간 복잡도가 걸린다
             // 메모리는 임의 접근을 하기 때문에 메모리 공간의 주소를 알면 O(1)의 시간 복잡도로 접근이 가능하다
@@ -30,7 +31,7 @@ namespace DataStructure {
 
             // 추상 자료구조: 기능에 집중한다 / 기본 자료구조로 구현할 수 있다
             // 실제 프로그래밍을 할 때에는 기본 자료구조가 아니라 추상 자료형을 활용해서 생각하는게 실제 생선성에서 옳다
-            
+
             // 1. 리스트: 순서가 있고 접근 탐색 삭제 삽입 연산이 가능한 추상 자료형 > 동적 배열 또는 링크드 리스트로 구현할 수 있다
             // 2. 스택: 맨 뒤 추가 / 맨 뒤 삭제 / 맨 뒤 접근: 동배와 링크리모두로 구현 가능 > 링크리가 유리한 듯?
             // 3. 큐: 맨 뒤 추가 / 맨 앞 삭제 / 맨 앞 접근: 동배와 링크리모두로 구현 가능 > 링크리가 유리한 듯?
@@ -40,17 +41,23 @@ namespace DataStructure {
 
             // 추가
             list.Add(1);
-            list.Add(2);
-            list.Add(4);
-            list.Add(5);
-            list.Print();
+            // list.Add(2);
+            // list.Add(3);
+            // list.Add(4);
 
             // 삽입
             // list.Insert(2, 3);
-            // 삭제
-            // list.Delete(2);
+
+            // 탐색
+            list.Print();
+            Console.WriteLine("-----");
+
             // 접근
-            // list.At(2);
+            Console.WriteLine(list.At(3));
+
+            // 삭제
+            list.Delete(0);
+            list.Print();
         }
     }
 }

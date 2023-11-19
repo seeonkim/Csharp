@@ -17,12 +17,12 @@ namespace OOP.UI {
             this.user = this.user;
             //처음에 'buyer' 'seller' 쓰니까 오류 뜨길래 구글링 해보니 저헣게 하라 해서 그냥 함..
             //처음에 에러 뜬 이유를 모르겠음
-            if (this.user.GetUserType() == @"buyer") {
+            if (this.user.GetUserType() == "buyer") {
                 Console.WriteLine("구매자 메인 화면입니다");
                 this.BuyerMainScreen();
             }
 
-            if (this.user.GetUserType() == @"seller") {
+            if (this.user.GetUserType() == "seller") {
                 Console.WriteLine("판매자 메인 화면입니다");
                 this.SellerMainScreen();
             }
@@ -33,14 +33,15 @@ namespace OOP.UI {
             Console.WriteLine(this.user.GetEmail());
 
             Console.WriteLine("=====보유중인 상품 목록입니다=====");
-            ArrayList products = this.productService.GetMySellingProducts(this.user.GetEmail());
-            {
-                // for 문 쓰고 싶은데 자꾸 오류 뜸... 밑에도 마찬가지!!
-                // for (product in products)
-                // {
-                Console.WriteLine(product.GetId(), product.GetTitlle(), product.GetTitlle());
-                // }
+            List<ProductDto> products = this.productService.GetMySellingProducts(this.user.GetEmail());
+
+            // for 문 쓰고 싶은데 자꾸 오류 뜸... 밑에도 마찬가지!!
+            for (int i = 0; i < products.Count; i++) {
+                ProductDto product = products[i];
+                Console.WriteLine(product.id, product.title, product.title);
             }
+
+
             Console.WriteLine("=====계좌 잔액입니다=====");
             Console.WriteLine(this.user.GetMoney());
 

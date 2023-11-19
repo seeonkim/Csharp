@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace OOP.Domain {
     internal class UserDto {
         public readonly string email;
