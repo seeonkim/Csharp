@@ -68,7 +68,7 @@ namespace OOP.UI {
             Console.WriteLine(this.user.GetEmail());
 
             Console.WriteLine("=====판매중인 상품 목록입니다=====");
-            ArrayList products = this.productService.GetMySellingProducts(this.user.GetEmail());
+            List<ProductDto> products = this.productService.GetMySellingProducts(this.user.GetEmail());
             // for (object product in products);
             Console.WriteLine(product.GetId(), product.GetTitlle(), product.GetContent(), product.GetPrice());
 
