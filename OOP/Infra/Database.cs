@@ -1,23 +1,36 @@
+using System;
+using System.Collections;
 using System.IO;
+using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace OOP.Infra {
     public class Database {
-        public void Write() {
-            // Hint 1
-            // 파일에 데이터를 쓰는 방법은 아래의 코드를 참고하세요
-            // StreamWriter writer = new StreamWriter("파일의 경로를 쓰세요", false);
-            StreamWriter writer = new StreamWriter("파일의 경로를 쓰세요", true);
-            writer.WriteLine("a,b,c");
-            writer.Close();
+        public string rootDir() {
+            return "";
+        }
+        public void Read (string fileName) {
+            string[] content;
+            string filepath = this.rootDir();
+            using (StreamReader reader = new StreamReader(filepath)) { 
+                string line = reader.ReadLine();
+            }
+        }
+        public void Write(string fileName, string row) {
+            string filepath = this.rootDir();
+            using (StreamWriter writer = new StreamWriter(filepath, true)) { 
+                writer.WriteLine("row"); 
+                writer.Close();
+            }
+
         }
 
-        public void Read() {
-            // Hint 2
-            // 파일에 데이터를 쓰는 방법은 아래의 코드를 참고하세요
-            // StreamReader reader = new StreamReader("파일의 경로를 쓰세요");
-            // string line = reader.ReadLine();
-            // Console.WriteLine(line);
-            // reader.Close();
+        public void Add() {
+            
+        }
+
+        public void Update() {
+            
         }
     }
 }

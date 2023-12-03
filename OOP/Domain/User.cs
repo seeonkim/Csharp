@@ -14,6 +14,7 @@ namespace OOP.Domain {
             this.userType = userType;
         }
     }
+
     internal class User {
         // 인스턴스 변수
         private string email;
@@ -21,7 +22,7 @@ namespace OOP.Domain {
         private string nickname;
         private int money;
         private string userType;
-        
+
         // 생성자
         public User(string email, string password, string nickname, int money, string userType) {
             this.email = email;
@@ -35,21 +36,30 @@ namespace OOP.Domain {
         public string GetEmail() {
             return this.email;
         }
+
         public string GetPassword() {
             return this.password;
         }
+
         public string GetNickname() {
             return this.nickname;
         }
+
         public int GetMoney() {
-            return this. money;
-        }        
+            return this.money;
+        }
+
         public string GetUserType() {
             return this.userType;
         }
-        
-        public UserDto ConvertDTO() {
-            return new UserDto(this.email, this.nickname, this.money, this.userType);
+
+        public object ConvertDto() {
+            return new {
+                email = GetEmail(),
+                nickname = GetNickname(),
+                money = GetMoney(),
+                userType = GetUserType()
+            };
         }
 
         public bool Income(int money) {
@@ -68,4 +78,3 @@ namespace OOP.Domain {
         }
     }
 }
-        
