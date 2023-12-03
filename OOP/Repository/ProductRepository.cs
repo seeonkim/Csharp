@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Data;
+using OOP.Infra;
 
-namespace OOP.Repositoryy {
+namespace OOP.Repository {
     interface IProductRepository {
         string createProductId();
         void createProduct(string title, int price, string content, string sellerEmail);
@@ -11,6 +12,12 @@ namespace OOP.Repositoryy {
     }
 
     public class ProductRepository : BaseRepository, IProductRepository {
+        private IDatabase db;
+
+        public ProductRepository() {
+            this.db = Database.Instance;
+        }
+
         public string createProductId() {
             throw new System.NotImplementedException();
         }

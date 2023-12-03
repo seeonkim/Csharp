@@ -1,78 +1,76 @@
-using System.Collections.Generic;
-
 namespace OOP.Domain {
     internal class UserDto {
-        public readonly string email;
-        public readonly string nickname;
-        public readonly int money;
-        public readonly string userType;
+        public readonly string Email;
+        public readonly string Nickname;
+        public readonly int Money;
+        public readonly string UserType;
 
         public UserDto(string email, string nickname, int money, string userType) {
-            this.email = email;
-            this.nickname = nickname;
-            this.money = money;
-            this.userType = userType;
+            this.Email = email;
+            this.Nickname = nickname;
+            this.Money = money;
+            this.UserType = userType;
         }
     }
 
     internal class User {
         // 인스턴스 변수
-        private string email;
-        private string password;
-        private string nickname;
-        private int money;
-        private string userType;
+        private readonly string _email;
+        private readonly string _password;
+        private readonly string _nickname;
+        private int _money;
+        private readonly string _userType;
 
         // 생성자
         public User(string email, string password, string nickname, int money, string userType) {
-            this.email = email;
-            this.password = password;
-            this.nickname = nickname;
-            this.money = money;
-            this.userType = userType;
+            this._email = email;
+            this._password = password;
+            this._nickname = nickname;
+            this._money = money;
+            this._userType = userType;
         }
 
-        // 메소드
-        public string GetEmail() {
-            return this.email;
+        // 인스턴스 메소드
+        public string Email {
+            get { return this._email; }
         }
 
-        public string GetPassword() {
-            return this.password;
+        public string Password {
+            get { return this._password; }
         }
 
-        public string GetNickname() {
-            return this.nickname;
+        public string Nickname {
+            get { return this._nickname; }
         }
 
-        public int GetMoney() {
-            return this.money;
+        public int Money {
+            get { return this._money; }
         }
 
-        public string GetUserType() {
-            return this.userType;
+        public string UserType {
+            get { return this._userType; }
         }
 
-        public object ConvertDto() {
-            return new {
-                email = GetEmail(),
-                nickname = GetNickname(),
-                money = GetMoney(),
-                userType = GetUserType()
-            };
+        public UserDto ConvertDto() {
+            return new UserDto(
+                this._email,
+                this._nickname,
+                this._money,
+                this._userType
+            );
         }
 
         public bool Income(int money) {
-            this.money += money;
+            this._money += money;
             return true;
         }
 
         public bool Withdraw(int money) {
-            if (this.money < money) {
+            if (this._money < money) {
                 return false;
             }
             else {
-                this.money -= money;
+                this._money -= money;
                 return true;
             }
         }
