@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using OOP.Domain;
-using OOP.UI;
+﻿using OOP.UI;
 
 
 namespace OOP {

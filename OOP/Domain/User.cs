@@ -1,4 +1,5 @@
 namespace OOP.Domain {
+    // UI에서 사용하는 타입
     internal class UserDto {
         public readonly string Email;
         public readonly string Nickname;
@@ -13,6 +14,7 @@ namespace OOP.Domain {
         }
     }
 
+    // 서비스에서 사용하는 타입
     internal class User {
         // 인스턴스 변수
         private readonly string _email;
@@ -73,6 +75,23 @@ namespace OOP.Domain {
                 this._money -= money;
                 return true;
             }
+        }
+    }
+
+    // database에 저장되는 형태
+    internal class UserData {
+        public readonly string Email;
+        public readonly string Password;
+        public readonly string Nickname;
+        public readonly int Money;
+        public readonly string UserType;
+
+        public UserData(string email, string password, string nickname, string money, string userType) {
+            this.Email = email;
+            this.Password = password;
+            this.Nickname = nickname;
+            this.Money = int.Parse(money);
+            this.UserType = userType;
         }
     }
 }
