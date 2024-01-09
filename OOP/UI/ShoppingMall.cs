@@ -1,17 +1,20 @@
-using System.Collections.Generic;
 using OOP.Domain;
 
 namespace OOP.UI {
     internal class ShoppingMall {
-        private AuthScreen _authScreen;
-        private HomeScreen _homeScreen;
+        private IAuthScreen _authScreen;
+        private IHomeScreen _homeScreen;
+
+        public ShoppingMall() {
+            this._authScreen = new AuthScreen();
+            this._homeScreen = new HomeScreen();
+        }
 
         public void Init() {
             UserDto user = this._authScreen.Auth();
             this._homeScreen.Main(user);
         }
     }
-    
 }
 
 //한 것

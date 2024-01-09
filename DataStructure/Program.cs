@@ -37,16 +37,16 @@ namespace DataStructure {
             // 3. 큐: 맨 뒤 추가 / 맨 앞 삭제 / 맨 앞 접근: 동배와 링크리모두로 구현 가능 > 링크리가 유리한 듯?
             // 4. 순환큐 우선순위큐 힙 이진탐색트리
 
-            LinkedList list = new LinkedList();
+            LinkedList<char> list = new LinkedList<char>();
 
             // 추가
-            list.Add(1);
-            // list.Add(2);
-            // list.Add(3);
-            // list.Add(4);
+            list.Add('a');
+            list.Add('b');
+            list.Add('d');
+            list.Add('c');
 
             // 삽입
-            // list.Insert(2, 3);
+            list.Insert(2, 'g');
 
             // 탐색
             list.Print();

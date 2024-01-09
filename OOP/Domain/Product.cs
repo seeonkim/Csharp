@@ -1,5 +1,3 @@
-using System.Security.AccessControl;
-
 namespace OOP.Domain {
     internal class ProductDto {
         public readonly string id;

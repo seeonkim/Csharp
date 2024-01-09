@@ -1,24 +1,24 @@
 using System;
 
 namespace DataStructure.Basic {
-    public class Node {
+    public class Node<T> {
         // 인스턴스 변수
-        public int number;
-        public Node prevNode;
-        public Node nextNode;
+        public T data;
+        public Node<T> prevNode;
+        public Node<T> nextNode;
 
         // 생성자 함수
-        public Node(int number) {
-            this.number = number;
+        public Node(T data) {
+            this.data = data;
             this.prevNode = null;
             this.nextNode = null;
         }
     }
 
-    public class LinkedList {
+    public class LinkedList<T> {
         // 인스턴스 변수
-        private Node headNode;
-        private Node tailNode;
+        private Node<T> headNode;
+        private Node<T> tailNode;
 
         // 생성자
         public LinkedList() {
@@ -28,13 +28,13 @@ namespace DataStructure.Basic {
 
         // 메소드
         public void Print() {
-            Node currentNode = this.headNode;
+            Node<T> currentNode = this.headNode;
             if (currentNode == null) {
                 return;
             }
 
             while (true) {
-                Console.WriteLine(currentNode.number);
+                Console.WriteLine(currentNode.data);
                 currentNode = currentNode.nextNode;
                 if (currentNode == null) {
                     break;
@@ -45,13 +45,13 @@ namespace DataStructure.Basic {
         // print 메소드는, 현재 존재하는 노드들의 넘버를 순서대로 콘솔창에 적는다
         // 언제까지? nextnode가 null일 때까지! (즉, 마지막 node 일 때 까지 프린트 한다 )
 
-        public void Add(int number) {
+        public void Add(T data) {
             if (this.headNode == null) {
-                this.headNode = new Node(number);
+                this.headNode = new Node<T>(data);
                 this.tailNode = this.headNode;
             }
             else {
-                Node newNode = new Node(number);
+                Node<T> newNode = new Node<T>(data);
                 this.tailNode.nextNode = newNode;
                 newNode.prevNode = this.tailNode;
                 this.tailNode = newNode;
@@ -67,13 +67,13 @@ namespace DataStructure.Basic {
         // 새로운 노드의 전 노드는 기존의 끝노드가 된다 (이어붙인 자리를 표시해주는 느낌)
         // 이제 끝 노드는 새로운 노드가 된다!
 
-        public int? At(int index) {
+        public object At(int index) {
             if (index < 0) {
                 return null;
             }
 
             int i = 0;
-            Node currentNode = this.headNode;
+            Node<T> currentNode = this.headNode;
             while (i < index) {
                 currentNode = currentNode.nextNode;
                 if (currentNode == null) {
@@ -83,18 +83,18 @@ namespace DataStructure.Basic {
                 i += 1;
             }
 
-            return currentNode.number;
+            return currentNode.data;
         }
 
         // 첫번째 노드의 포인터로 두번째 데이터를 찾을 수 있다
         // 반복하자..
-        public bool Insert(int index, int number) {
-            Node insertNode = new Node(number);
+        public bool Insert(int index, T data) {
+            Node<T> insertNode = new Node<T>(data);
             if (index < 0) {
                 return false;
             }
 
-            Node currentNode = this.headNode;
+            Node<T> currentNode = this.headNode;
             int i = 0;
             while (i < index) {
                 currentNode = currentNode.nextNode;
@@ -150,15 +150,15 @@ namespace DataStructure.Basic {
 
         //delete 메소드 구현하기
         //파라미터로 지우고 싶은 인덱스 위치를 입력받음
-            
 
-            public bool Delete(int index) {
+
+        public bool Delete(int index) {
             if (index < 0) {
                 return false;
             }
 
             //만약 음수를 입력한다면 FALSE 리턴한다
-            Node currentNode = this.headNode;
+            Node<T> currentNode = this.headNode;
             int i = 0;
             while (i < index) {
                 currentNode = currentNode.nextNode;

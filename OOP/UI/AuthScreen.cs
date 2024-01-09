@@ -1,21 +1,29 @@
 using System;
-using System.Collections.Generic;
-using System.Management.Instrumentation;
 using OOP.Domain;
 using OOP.Service;
 
 namespace OOP.UI {
-    internal class AuthScreen {
-        private AuthService service;
+    internal interface IAuthScreen {
+        UserDto Auth();
+        bool SignUp();
+        UserDto Login();
+    }
+
+    internal class AuthScreen : IAuthScreen {
+        private readonly IAuthService _authService;
 
         public AuthScreen() {
-            this.service = new AuthService();
+            this._authService = new AuthService();
         }
 
         public UserDto Auth() {
             Console.WriteLine("회원 가입(0) | 로그인(1): ");
-            int authChoice = int.Parse(Console.ReadLine());
-            Console.WriteLine(authChoice);
+            string choice = Console.ReadLine();
+            if (choice == null) {
+                return null;
+            }
+
+            int authChoice = int.Parse(choice);
             if (authChoice == 0) {
                 bool isSignedUp = this.SignUp();
                 if (isSignedUp == false) {
@@ -30,7 +38,7 @@ namespace OOP.UI {
             else {
                 UserDto user = this.Login();
                 if (user == null) {
-                    Console.WriteLine("아이디 또는 비밀번호 오류"); 
+                    Console.WriteLine("아이디 또는 비밀번호 오류");
                     return this.Auth();
                 }
                 else {
@@ -48,11 +56,16 @@ namespace OOP.UI {
             Console.WriteLine("유저의 이름을 입력하세요: ");
             string nickname = Console.ReadLine();
             Console.WriteLine("자산을 입력하세요: ");
-            int money = int.Parse(Console.ReadLine());
+            string moneyStr = Console.ReadLine();
+            int money = 0;
+            if (moneyStr != null) {
+                money = int.Parse(moneyStr);
+            }
+
             Console.WriteLine("유저의 타입(buyer/seller)을 입력하세요: ");
             string userType = Console.ReadLine();
-            bool isSignedUp = this.service.SignUp(email, password, nickname, money, userType);
-            
+            bool isSignedUp = this._authService.SignUp(email, password, nickname, money, userType);
+
             return isSignedUp;
         }
 
@@ -61,11 +74,9 @@ namespace OOP.UI {
             string email = Console.ReadLine();
             Console.WriteLine("비밀번호를 입력하세요: ");
             string password = Console.ReadLine();
-            UserDto user = this.service.LogIn(email, password);
-                
+            UserDto user = this._authService.LogIn(email, password);
+
             return user;
         }
     }
 }
-//login 함수가 반환하는 값은 user
- //(딕셔너리 형태.. 딕셔너리 형태는 <키, 값>을 쓰라고 하는데 값으로는 여러타입의 값을 반환함..
