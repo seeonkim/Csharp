@@ -5,15 +5,13 @@ using OOP.Service;
 namespace OOP.UI {
     internal interface IAuthScreen {
         UserDto Auth();
-        bool SignUp();
-        UserDto Login();
     }
 
     internal class AuthScreen : IAuthScreen {
-        private readonly IAuthService _authService;
+        private readonly IAuthService authService;
 
         public AuthScreen() {
-            this._authService = new AuthService();
+            this.authService = new AuthService();
         }
 
         public UserDto Auth() {
@@ -23,14 +21,22 @@ namespace OOP.UI {
                 return null;
             }
 
+            if (choice.Length != 1) {
+                return null;
+            }
+
+            if (char.Parse(choice) != '0' && char.Parse(choice) != '1') {
+                return null;
+            }
+
             int authChoice = int.Parse(choice);
             if (authChoice == 0) {
                 bool isSignedUp = this.SignUp();
                 if (isSignedUp == false) {
-                    Console.WriteLine("회원가입 실패");
+                    Console.WriteLine("중복된 이메일입니다. 다시 입력해주세요.");
                 }
                 else {
-                    Console.WriteLine("회원가입 성공");
+                    Console.WriteLine("회원가입이 완료되었습니다.");
                 }
 
                 return this.Auth();
@@ -64,7 +70,8 @@ namespace OOP.UI {
 
             Console.WriteLine("유저의 타입(buyer/seller)을 입력하세요: ");
             string userType = Console.ReadLine();
-            bool isSignedUp = this._authService.SignUp(email, password, nickname, money, userType);
+
+            bool isSignedUp = this.authService.SignUp(email, password, nickname, money, userType);
 
             return isSignedUp;
         }
@@ -74,7 +81,8 @@ namespace OOP.UI {
             string email = Console.ReadLine();
             Console.WriteLine("비밀번호를 입력하세요: ");
             string password = Console.ReadLine();
-            UserDto user = this._authService.LogIn(email, password);
+
+            UserDto user = this.authService.LogIn(email, password);
 
             return user;
         }

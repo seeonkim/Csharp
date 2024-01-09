@@ -42,8 +42,8 @@ namespace DataStructure {
             // 추가
             list.Add('a');
             list.Add('b');
-            list.Add('d');
             list.Add('c');
+            list.Add('d');
 
             // 삽입
             list.Insert(2, 'g');

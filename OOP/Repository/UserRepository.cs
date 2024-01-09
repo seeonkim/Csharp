@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using OOP.Domain;
 using OOP.Infra;
 
@@ -9,7 +10,7 @@ namespace OOP.Repository {
     }
 
     internal class UserRepository : IUserRepository {
-        private IDatabase db;
+        private readonly IDatabase db;
 
         public UserRepository() {
             this.db = Database.Instance;
@@ -20,11 +21,29 @@ namespace OOP.Repository {
         }
 
         public User FindUserByEmail(string email) {
-            throw new System.NotImplementedException();
+            List<UserData> rows = this.db.Read<UserData>("users.csv");
+            for (int i = 0; i < rows.Count; i++) {
+                UserData userData = rows[i];
+                if (userData.Email == email) {
+                    return new User(userData.Email, userData.Password, userData.Nickname, userData.Money,
+                        userData.UserType);
+                }
+            }
+
+            return null;
         }
 
         public User FindUserByEmailAndPassword(string email, string password) {
-            throw new System.NotImplementedException();
+            List<UserData> rows = this.db.Read<UserData>("users.csv");
+            for (int i = 0; i < rows.Count; i++) {
+                UserData userData = rows[i];
+                if (userData.Email == email && userData.Password == password) {
+                    return new User(userData.Email, userData.Password, userData.Nickname, userData.Money,
+                        userData.UserType);
+                }
+            }
+
+            return null;
         }
     }
 }

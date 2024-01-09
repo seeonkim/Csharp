@@ -11,7 +11,7 @@ namespace OOP.Service {
 
     internal class ProductService : IProductService {
         public List<ProductDto> GetMySellingProducts(string email) {
-            throw new System.NotImplementedException();
+            return new List<ProductDto>();
         }
 
         public void AddSellingProduct(string title, int price, string content, string sellerEmail) {

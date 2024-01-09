@@ -9,26 +9,24 @@ namespace OOP.Service {
     }
 
     internal class AuthService : IAuthService {
-        private IUserRepository _userRepository;
+        private readonly IUserRepository userRepository;
 
         public AuthService() {
-            this._userRepository = new UserRepository();
+            this.userRepository = new UserRepository();
         }
 
         public bool SignUp(string email, string password, string nickname, int money, string userType) {
-            // User user = this._userRepository.FindUserByEmail(email);
-            // if (user != null) {
-            // Console.WriteLine("중복된 이메일입니다. 다시 입력해주세요.");
-            // return false;
-            // }
+            User user = this.userRepository.FindUserByEmail(email);
+            if (user != null) {
+                return false;
+            }
 
-            this._userRepository.CreateUser(email, password, nickname, money, userType);
-            Console.WriteLine("회원가입이 완료되었습니다.");
+            this.userRepository.CreateUser(email, password, nickname, money, userType);
             return true;
         }
 
         public UserDto LogIn(string email, string password) {
-            User user = this._userRepository.FindUserByEmailAndPassword(email, password);
+            User user = this.userRepository.FindUserByEmailAndPassword(email, password);
             if (user == null) {
                 return null;
             }
