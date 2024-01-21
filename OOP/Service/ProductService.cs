@@ -12,9 +12,19 @@ namespace OOP.Service {
 
     internal class ProductService : IProductService {
         private readonly IProductRepository _productRepository;
-        
+
+        public ProductService() {
+            this._productRepository = new ProductRepository();
+        }
+
         public List<ProductDto> GetMySellingProducts(string email) {
-            return new List<ProductDto>();
+            List<Product> products = this._productRepository.findSellerProductsByEmail(email);
+            List<ProductDto> productDtos = new List<ProductDto>();
+            for (int i = 0; i < products.Count; i++) {
+                productDtos.Add(products[i].ConvertDTO());
+            }
+
+            return productDtos;
         }
 
         public bool AddSellingProduct(string title, int price, string content, string sellerEmail) {

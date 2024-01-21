@@ -1,5 +1,6 @@
 namespace OOP.Domain {
-    internal class ProductDto {
+    // UI에서 사용하는 타입
+    public class ProductDto {
         public readonly string id;
         public readonly string title;
         public readonly int price;
@@ -20,7 +21,8 @@ namespace OOP.Domain {
         }
     }
 
-    internal class Product {
+    // 서비스에서 사용하는 타입
+    public class Product {
         // 인스턴스 변수
         private string id;
         private string title;
@@ -84,6 +86,28 @@ namespace OOP.Domain {
         public void setSoldOut(string buyerEmail) {
             this.isSelling = false;
             this.buyerEmail = buyerEmail;
+        }
+    }
+
+    // database에 저장되는 형
+    public class ProductData {
+        public readonly string Id;
+        public readonly string Title;
+        public readonly int Price;
+        public readonly string Content;
+        public readonly bool IsSelling;
+        public readonly string SellerEmail;
+        public readonly string BuyerEmail;
+
+        public ProductData(string id, string title, string price, string content, string isSelling, string sellerEmail,
+            string buyerEmail) {
+            this.Id = id;
+            this.Title = title;
+            this.Price = int.Parse(id);
+            this.Content = content;
+            this.IsSelling = bool.Parse(isSelling);
+            this.SellerEmail = sellerEmail;
+            this.BuyerEmail = buyerEmail;
         }
     }
 }

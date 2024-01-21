@@ -1,14 +1,14 @@
+using System;
 using System.Collections;
-using System.Data;
+using System.Collections.Generic;
+using System.Diagnostics;
+using OOP.Domain;
 using OOP.Infra;
-using System.Random;
 
 namespace OOP.Repository {
     interface IProductRepository {
-        int createProductId();
         void createProduct(string title, int price, string content, string sellerEmail);
-        object findProductById(int productId);
-        ArrayList findSellerProductsByEmail(string email);
+        List<Product> findSellerProductsByEmail(string email);
         ArrayList findSellingProducts();
     }
 
@@ -18,34 +18,28 @@ namespace OOP.Repository {
         public ProductRepository() {
             this.db = Database.Instance;
         }
-        
-        private Random random = new Random();
-        public int createProductId()
-        {
-            int productId = random.Next(0, 10000);
-            var product = findProductById(productId);
-        
-            if (product != null)
-            {
-                return createProductId();
-            }
 
-            return productId;
-        }
-        
+        private Random random = new Random();
+
         public void createProduct(string title, int price, string content, string sellerEmail) {
-            int productId = createProductId();
+            int productId = this.db.GetFinalId("Products.csv") + 1;
             bool isSelling = true;
             string buyerEmail = null;
-            this.db.Write();
+            Console.WriteLine("?????");
+            this.db.Write("Products.csv",
+                $"{productId},{title},{price},{content},{isSelling},{sellerEmail},{buyerEmail}");
         }
 
-        public object findProductById(int productId) {
-            throw new System.NotImplementedException();
-        }
+        public List<Product> findSellerProductsByEmail(string email) {
+            List<ProductData> productDataList = this.db.Read<ProductData>("Products.csv");
+            List<Product> products = new List<Product>();
+            for (int i = 0; i < productDataList.Count; i++) {
+                ProductData productData = productDataList[i];
+                products.Add(new Product(productData.Id, productData.Title, productData.Price, productData.Content,
+                    productData.IsSelling, productData.SellerEmail, productData.BuyerEmail));
+            }
 
-        public ArrayList findSellerProductsByEmail(string email) {
-            throw new System.NotImplementedException();
+            return products;
         }
 
         public ArrayList findSellingProducts() {

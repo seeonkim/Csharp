@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using OOP.Domain;
@@ -7,6 +8,7 @@ namespace OOP.Infra {
         List<T> Read<T>(string fileName) where T : class;
         void Write(string fileName, string row);
         void Update();
+        int GetFinalId(string fileName);
     }
 
     public class Database : IDatabase {
@@ -60,11 +62,38 @@ namespace OOP.Infra {
                         line.Split(',')[4]) as T
                     );
                 }
+                else if (typeof(T) == typeof(ProductData)) {
+                    rows.Add(new ProductData(line.Split(',')[0], line.Split(',')[1], line.Split(',')[2],
+                        line.Split(',')[3],
+                        line.Split(',')[4], line.Split(',')[5], line.Split(',')[6]) as T
+                    );
+                }
             }
 
             reader.Close();
 
             return rows;
+        }
+
+        public int GetFinalId(string fileName) {
+            string filePath = this.rootDir + fileName;
+            StreamReader reader = new StreamReader(filePath);
+
+            reader.ReadLine();
+
+            int finalId = 0;
+            while (true) {
+                string line = reader.ReadLine();
+                if (line == null) {
+                    break;
+                }
+
+                finalId += 1;
+            }
+
+            reader.Close();
+
+            return finalId;
         }
     }
 }
