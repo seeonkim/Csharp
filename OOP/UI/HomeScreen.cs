@@ -6,8 +6,6 @@ using OOP.Service;
 namespace OOP.UI {
     internal interface IHomeScreen {
         void Main(UserDto user);
-        void SellerMainScreen();
-        void BuyerMainScreen();
     }
 
     internal class HomeScreen : IHomeScreen {

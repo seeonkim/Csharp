@@ -65,8 +65,8 @@ namespace OOP.Domain {
             return this.isSelling;
         }
 
-        public bool GetSellerEmail() {
-            return this.isSelling;
+        public string GetSellerEmail() {
+            return this.sellerEmail;
         }
 
         public string GetBuyerEmail() {
@@ -77,10 +77,6 @@ namespace OOP.Domain {
             return new ProductDto(this.id, this.title, this.price, this.content, this.isSelling, this.sellerEmail,
                 this.buyerEmail);
         }
-
-        // def set_sold_out(self, buyer_email):
-        // self.__is_selling = False
-        //     self.__buyer_email = buyer_email
 
 
         public void setSoldOut(string buyerEmail) {

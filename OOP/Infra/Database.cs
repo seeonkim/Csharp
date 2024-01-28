@@ -7,7 +7,7 @@ namespace OOP.Infra {
     public interface IDatabase {
         List<T> Read<T>(string fileName) where T : class;
         void Write(string fileName, string row);
-        void Update();
+        void Update(string fileName, string row);
         int GetFinalId(string fileName);
     }
 
@@ -41,9 +41,28 @@ namespace OOP.Infra {
             writer.Close();
         }
 
-        public void Update() {
+        public void Update(string fileName, string row) {
+            List<string[]> rows = this.Read<string[]>(fileName);
+            for (int i = 0; i < rows.Count; i++) {
+                string[] findRow = rows[i];
+                if (row.Split(',')[0] == findRow[0]) { 
+                    rows[i] = row.Split(',');
+                    break;
+                }
+            }
+            WriteToFile(fileName, rows);
         }
 
+        private void WriteToFile(string fileName, List<string[]> rows) {
+            string filePath = Path.Combine(this.rootDir, fileName);
+            using (StreamWriter writer = new StreamWriter(filePath, false))
+            {
+                foreach (string[] rowData in rows)
+                {
+                    writer.WriteLine(string.Join(",", rowData));
+                }
+            }
+        }
         public List<T> Read<T>(string fileName) where T : class {
             List<T> rows = new List<T>();
             string filePath = this.rootDir + fileName;

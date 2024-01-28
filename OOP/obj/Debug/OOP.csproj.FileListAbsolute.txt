@@ -11,3 +11,10 @@ C:/Users/82109/RiderProjects/Csharp/OOP/obj/Debug/OOP.csproj.SuggestedBindingRed
 C:/Users/82109/RiderProjects/Csharp/OOP/obj/Debug/OOP.csproj.CoreCompileInputs.cache
 C:/Users/82109/RiderProjects/Csharp/OOP/obj/Debug/OOP.exe
 C:/Users/82109/RiderProjects/Csharp/OOP/obj/Debug/OOP.pdb
+C:\Users\82109\RiderProjects\Csharp\OOP\bin\Debug\OOP.exe
+C:\Users\82109\RiderProjects\Csharp\OOP\bin\Debug\OOP.pdb
+C:\Users\82109\RiderProjects\Csharp\OOP\obj\Debug\OOP.csproj.AssemblyReference.cache
+C:\Users\82109\RiderProjects\Csharp\OOP\obj\Debug\OOP.csproj.SuggestedBindingRedirects.cache
+C:\Users\82109\RiderProjects\Csharp\OOP\obj\Debug\OOP.csproj.CoreCompileInputs.cache
+C:\Users\82109\RiderProjects\Csharp\OOP\obj\Debug\OOP.exe
+C:\Users\82109\RiderProjects\Csharp\OOP\obj\Debug\OOP.pdb
