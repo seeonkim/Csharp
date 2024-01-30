@@ -7,16 +7,16 @@ using OOP.Domain;
 using OOP.Infra;
 
 namespace OOP.Repository {
-    interface IProductRepository {
+    interface IProductRepository : IBaseRepository {
         void createProduct(string title, int price, string content, string sellerEmail);
         List<Product> findSellerProductsByEmail(string email);
         List<Product> findSellingProducts();
         Product findProductByProductID(string productID);
-        
     }
 
     public class ProductRepository : BaseRepository, IProductRepository {
-        private IDatabase db;
+        public ProductRepository() : base("Products.csv") {
+        }
 
         private Random random = new Random();
 
@@ -25,14 +25,15 @@ namespace OOP.Repository {
             bool isSelling = true;
             string buyerEmail = null;
             Console.WriteLine("?????");
-            this.db.Write("Products.csv",
-                $"{productId},{title},{price},{content},{isSelling},{sellerEmail},{buyerEmail}");
+            this.db.Append<ProductData>("Products.csv",
+                new ProductData(productId.ToString(), title, price.ToString(), content, isSelling.ToString(),
+                    sellerEmail, ""));
         }
 
         // 입력한 이메일의 유저가 판매하고 있는 상품목록
         //즉 products.csv의 줄들을 모두 돌되, 이메일 정보가 일치하는 줄만 product service에 전달한다.
         public List<Product> findSellerProductsByEmail(string email) {
-            List<ProductData> productDataList = this.db.Read<ProductData>("Products.csv");
+            List<ProductData> productDataList = this.db.Read<ProductData>(this.fileName);
             List<Product> products = new List<Product>();
             for (int i = 0; i < productDataList.Count; i++) {
                 ProductData productData = productDataList[i];
@@ -71,7 +72,5 @@ namespace OOP.Repository {
 
             return null;
         }
-        
-
     }
 }

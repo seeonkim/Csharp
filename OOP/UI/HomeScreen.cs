@@ -36,7 +36,7 @@ namespace OOP.UI {
             List<ProductDto> products = this._productService.GetMySellingProducts(this._user.Email);
             for (int i = 0; i < products.Count; i++) {
                 ProductDto product = products[i];
-                Console.WriteLine(product.id, product.title, product.title);
+                Console.WriteLine($"{product.id}, {product.title}, {product.price}");
             }
 
             Console.WriteLine("=====계좌 잔액입니다=====");

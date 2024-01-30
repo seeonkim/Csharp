@@ -1,4 +1,7 @@
-﻿using OOP.UI;
+﻿using System;
+using System.Reflection;
+using OOP.Domain;
+using OOP.UI;
 
 
 namespace OOP {
@@ -77,6 +80,7 @@ namespace OOP {
             // Console.WriteLine(user1.GetNickname());
             ShoppingMall app = new ShoppingMall();
             app.Init();
+      
         }
     }
 }

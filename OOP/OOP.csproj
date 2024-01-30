@@ -40,6 +40,8 @@
     </ItemGroup>
     <ItemGroup>
 
+        <Compile Include="Domain\BaseDomain.cs" />
+
         <Compile Include="Domain\Buyer.cs" />
 
         <Compile Include="Domain\Product.cs" />

@@ -1,6 +1,8 @@
+using System;
+
 namespace OOP.Domain {
     // UI에서 사용하는 타입
-    public class ProductDto {
+    public class ProductDto : BaseDto {
         public readonly string id;
         public readonly string title;
         public readonly int price;
@@ -22,7 +24,7 @@ namespace OOP.Domain {
     }
 
     // 서비스에서 사용하는 타입
-    public class Product {
+    public class Product : BaseDomain {
         // 인스턴스 변수
         private string id;
         private string title;
@@ -73,20 +75,26 @@ namespace OOP.Domain {
             return this.buyerEmail;
         }
 
-        public ProductDto ConvertDTO() {
-            return new ProductDto(this.id, this.title, this.price, this.content, this.isSelling, this.sellerEmail,
-                this.buyerEmail);
-        }
-
 
         public void setSoldOut(string buyerEmail) {
             this.isSelling = false;
             this.buyerEmail = buyerEmail;
         }
+
+        public override BaseDto ConvertDto() {
+            return new ProductDto(this.id, this.title, this.price, this.content, this.isSelling, this.sellerEmail,
+                this.buyerEmail);
+        }
+
+        public override BaseData ConvertData() {
+            return new ProductData(this.id, this.title, this.price.ToString(), this.content, this.isSelling.ToString(),
+                this.sellerEmail,
+                this.buyerEmail);
+        }
     }
 
     // database에 저장되는 형
-    public class ProductData {
+    public class ProductData : BaseData {
         public readonly string Id;
         public readonly string Title;
         public readonly int Price;
@@ -99,7 +107,7 @@ namespace OOP.Domain {
             string buyerEmail) {
             this.Id = id;
             this.Title = title;
-            this.Price = int.Parse(id);
+            this.Price = int.Parse(price);
             this.Content = content;
             this.IsSelling = bool.Parse(isSelling);
             this.SellerEmail = sellerEmail;
