@@ -2,6 +2,26 @@
 using DataStructure.Basic;
 
 namespace DataStructure {
+    public class UserInfo {
+        public int prettyScore;
+        public int singScore;
+
+        public UserInfo(int prettyScore, int singScore) {
+            this.prettyScore = prettyScore;
+            this.singScore = singScore;
+        }
+
+        public int PrettyScore {
+            get => prettyScore;
+            set => prettyScore = value;
+        }
+
+        public int SingScore {
+            get => singScore;
+            set => singScore = value;
+        }
+    }
+
     internal class Program {
         public static void Main(string[] args) {
             // 데이터를 효율적으로 사용하려면: 자료구조
@@ -36,28 +56,59 @@ namespace DataStructure {
             // 2. 스택: 맨 뒤 추가 / 맨 뒤 삭제 / 맨 뒤 접근: 동배와 링크리모두로 구현 가능 > 링크리가 유리한 듯?
             // 3. 큐: 맨 뒤 추가 / 맨 앞 삭제 / 맨 앞 접근: 동배와 링크리모두로 구현 가능 > 링크리가 유리한 듯?
             // 4. 순환큐 우선순위큐 힙 이진탐색트리
+            
 
-            LinkedList<char> list = new LinkedList<char>();
+            // 링크드리스트
+            // LinkedList<char> list = new LinkedList<char>();
+            //
+            // // 추가
+            // list.Add('a');
+            // list.Add('b');
+            // list.Add('c');
+            // list.Add('d');
+            //
+            // // 삽입
+            // list.Insert(2, 'g');
+            //
+            // // 탐색
+            // list.Print();
+            // Console.WriteLine("-----");
+            //
+            // // 접근
+            // Console.WriteLine(list.At(3));
+            //
+            // // 삭제
+            // list.Delete(0);
+            // list.Print();
+            
+            
+            
+            // 해쉬맵
+            // HashMap<UserInfo> hashMap = new HashMap<UserInfo>();
+            // hashMap.Add("세언", new UserInfo(99, 99));
+            // hashMap.Add("세연", new UserInfo(10, 40));
+            // hashMap.Add("세호", new UserInfo(20, 30));
+            // hashMap.Add("세진", new UserInfo(30, 20));
+            // hashMap.Add("세준", new UserInfo(40, 10));
+            //
+            // Console.WriteLine(hashMap.Get("세호").PrettyScore);
+            // Console.WriteLine(hashMap.Get("세언").SingScore);
+            
+            // 바이너리 트리
+            BinaryNode<int> node1 = new BinaryNode<int>(1);
+            BinaryNode<int> node2 = new BinaryNode<int>(2);
+            BinaryNode<int> node3 = new BinaryNode<int>(3);
+            BinaryNode<int> node4 = new BinaryNode<int>(4);
+            BinaryNode<int> node5 = new BinaryNode<int>(5);
+            BinaryNode<int> node6 = new BinaryNode<int>(6);
 
-            // 추가
-            list.Add('a');
-            list.Add('b');
-            list.Add('c');
-            list.Add('d');
-
-            // 삽입
-            list.Insert(2, 'g');
-
-            // 탐색
-            list.Print();
-            Console.WriteLine("-----");
-
-            // 접근
-            Console.WriteLine(list.At(3));
-
-            // 삭제
-            list.Delete(0);
-            list.Print();
+            // 바이너리 트리
+            node1.leftChild = node2;
+            node1.rightChild = node3;
+            node2.leftChild = node4;
+            node2.rightChild = node5;
+            node3.leftChild = node6;
+            
         }
     }
 }

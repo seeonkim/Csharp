@@ -19,11 +19,18 @@ namespace DataStructure.Basic {
         // 인스턴스 변수
         private Node<T> headNode;
         private Node<T> tailNode;
+        private int count;
 
         // 생성자
         public LinkedList() {
             headNode = null;
             tailNode = null;
+            this.count = 0;
+        }
+
+        // 길이
+        public int Count {
+            get { return this.count; }
         }
 
         // 메소드
@@ -56,6 +63,8 @@ namespace DataStructure.Basic {
                 newNode.prevNode = this.tailNode;
                 this.tailNode = newNode;
             }
+
+            this.count += 1;
         }
 
         // add 메소드는..
@@ -137,6 +146,8 @@ namespace DataStructure.Basic {
                 currentNode.prevNode.nextNode = insertNode;
             }
 
+
+            this.count += 1;
             return true;
         }
         // 여기서의 현재노드 -> 그 현재노드 자리를 오른쪽으로 한칸 밀어내고
@@ -191,6 +202,7 @@ namespace DataStructure.Basic {
             }
 
             //나머지 경우라면 true를 리턴한다.
+            this.count -= 1;
             return true;
         }
     }

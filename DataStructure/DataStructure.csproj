@@ -42,6 +42,7 @@
         <Compile Include="Basic\Array.cs" />
         <Compile Include="Basic\HashMap.cs" />
         <Compile Include="Basic\LinkedList.cs" />
+        <Compile Include="Basic\Tree.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

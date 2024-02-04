@@ -2,7 +2,7 @@ namespace DataStructure.Basic {
     // 해쉬 테이블
 
     // 1. 다이렉트 엑세스 테이블
-    
+
     // 키 - 값의 쌍으로 데이터를 저장한다
     // 키를 일종의 숫자로 생각하면, 최대 키값을 배열의 길이로 가지는 큰 배열을 가정하고
     // 각각의 키를 인덱스로 해서 데이터를 저장하면 된다
@@ -11,7 +11,7 @@ namespace DataStructure.Basic {
     // (배열의 길이는 긴데, 빈 공간은 많게 됨)
 
     // 2. 해쉬 테이블
-    
+
     // 우선 고정된 길이의 배열을 만든 다음
     // 해쉬함수 = 특정 값을 "원하는 범위의 자연수로" 바꿔주는 함수(ex: 나머지 연산 함수)
     // 해쉬함수(키) = 인덱스 로 하고
@@ -40,6 +40,85 @@ namespace DataStructure.Basic {
 
     // 삭제
     // 삽입과 동일한 시간 복잡도를 가진다
-    public class HashMap {
+
+
+    // 2. 오픈 어드레싱 방법
+    // 충돌이 일어나는 경우 둘 중 하나를 값이 없는 다른 인덱스에 저장하는 방법
+    // 값이 없는 인덱스를 어떻게 찾을까?
+
+    // 1. 선형으로 탐사해서 찾을 수 있다: 10에서 1씩 증가시키면서 체크 11, 12, 13, 14...
+    // 탐색: 탐색을 하다가 비어있는 인덱스를 만났다면 해당 값은 없다는 뜻임
+    // 삭제: 진짜로 지워버리면 중간에 빈칸이 생겨서 다른 값을 탐색할 때 문제가 생김 => 삭제 대신 약속된 형태로 표시를 해두자
+    // 삽입: 탐색해보고 없으면 추가하면 댐
+    // 대강 최악은 o(n) 평균은 o(1)//
+
+    // 제곱탐사도 가능: 10에서 제곱수만큼 증가시키면서 체크 11, 15, 24...
+    internal class HashNode<T> {
+        private string key;
+        private T value;
+
+        public HashNode(string key, T value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public string Key {
+            get { return this.key; }
+        }
+
+        public T Value {
+            get { return this.value; }
+        }
+    }
+
+    public class HashMap<T> where T : class {
+        private int capacity;
+        private LinkedList<HashNode<T>>[] list;
+
+        public HashMap() {
+            this.capacity = 7;
+            this.list = new LinkedList<HashNode<T>>[this.capacity];
+            for (int i = 0; i < this.list.Length; i++) {
+                this.list[i] = new LinkedList<HashNode<T>>();
+            }
+        }
+
+        private int Hash(string key) {
+            int hashCode = key.GetHashCode();
+            int result = hashCode % this.capacity;
+            if (result >= 0) {
+                return result;
+            }
+            else {
+                return result + this.capacity;
+            }
+        }
+
+        // 추가
+        public void Add(string key, T value) {
+            int hashedKey = this.Hash(key);
+            this.list[hashedKey].Add(new HashNode<T>(key, value));
+        }
+
+        // 삭제
+
+        // 삽입
+
+        // 검색
+        public T Get(string key) {
+            int hashedKey = this.Hash(key);
+
+            LinkedList<HashNode<T>> linkedList = this.list[hashedKey];
+            for (int i = 0; i < linkedList.Count; i++) {
+                HashNode<T> hashNode = linkedList.At(i) as HashNode<T>;
+                if (key == hashNode.Key) {
+                    return hashNode.Value;
+                }
+            }
+
+            return null;
+        }
+
+        // 출력
     }
 }
