@@ -1,27 +1,23 @@
 using System.Collections.Generic;
 using OOP.Domain;
-using OOP.Infra;
 
 namespace OOP.Repository {
-    interface IUserRepository {
+    interface IUserRepository : IBaseRepository {
         void CreateUser(string email, string password, string nickname, int money, string userType);
         User FindUserByEmail(string email);
         User FindUserByEmailAndPassword(string email, string password);
     }
 
-    internal class UserRepository : IUserRepository {
-        private readonly IDatabase db;
-
-        public UserRepository() {
-            this.db = Database.Instance;
+    internal class UserRepository : BaseRepository, IUserRepository {
+        public UserRepository() : base("Users.csv") {
         }
 
         public void CreateUser(string email, string password, string nickname, int money, string userType) {
-            this.db.Write("users.csv", $"{email},{password},{nickname},{money},{userType}");
+            this.db.Append<UserData>(this.fileName, new UserData(email, password, nickname, money.ToString(), userType));
         }
 
         public User FindUserByEmail(string email) {
-            List<UserData> rows = this.db.Read<UserData>("users.csv");
+            List<UserData> rows = this.db.Read<UserData>("Users.csv");
             for (int i = 0; i < rows.Count; i++) {
                 UserData userData = rows[i];
                 if (userData.Email == email) {

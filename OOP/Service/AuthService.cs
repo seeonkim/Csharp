@@ -31,7 +31,7 @@ namespace OOP.Service {
                 return null;
             }
             else {
-                return user.ConvertDto();
+                return user.ConvertDto() as UserDto;
             }
         }
     }

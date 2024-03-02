@@ -1,13 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using OOP.Domain;
 
 namespace OOP.Infra {
     public interface IDatabase {
-        List<T> Read<T>(string fileName) where T : class;
-        void Write(string fileName, string row);
-        void Update(string fileName, string row);
+        List<T> Read<T>(string fileName) where T : BaseData;
+        void Append<T>(string fileName, T data) where T : BaseData;
+        void Write<T>(string fileName, List<T> data) where T : BaseData;
+        void Update<T>(string fileName, T data) where T : BaseData;
         int GetFinalId(string fileName);
     }
 
@@ -34,36 +34,56 @@ namespace OOP.Infra {
         }
 
         // 인스턴스 메소드
-        public void Write(string fileName, string row) {
+        public void Append<T>(string fileName, T data) where T : BaseData {
+            if (data == null) {
+                return;
+            }
+
             string filePath = this.rootDir + fileName;
             StreamWriter writer = new StreamWriter(filePath, true);
-            writer.WriteLine(row);
+            if (data.GetType() == typeof(UserData)) {
+                UserData userData = data as UserData;
+                if (userData == null) {
+                    return;
+                }
+
+                writer.WriteLine(
+                    $"{userData.Email},{userData.Password},{userData.Nickname},{userData.Money},{userData.UserType}");
+            }
+            else if (data.GetType() == typeof(ProductData)) {
+                ProductData productData = data as ProductData;
+                if (productData == null) {
+                    return;
+                }
+
+                writer.WriteLine(
+                    $"{productData.Id},{productData.Title},{productData.Price},{productData.Content},{productData.IsSelling},{productData.SellerEmail},{productData.BuyerEmail}");
+            }
+
             writer.Close();
         }
 
-        public void Update(string fileName, string row) {
-            List<string[]> rows = this.Read<string[]>(fileName);
-            for (int i = 0; i < rows.Count; i++) {
-                string[] findRow = rows[i];
-                if (row.Split(',')[0] == findRow[0]) { 
-                    rows[i] = row.Split(',');
-                    break;
+        public void Write<T>(string fileName, List<T> data) where T : BaseData {
+            string filePath = this.rootDir + fileName;
+            StreamWriter writer = new StreamWriter(filePath, false);
+            if (typeof(T) == typeof(UserData)) {
+                string log = "";
+                for (int i = 0; i < data.Count; i++) {
+                    UserData userData = data[i] as UserData;
+                    if (userData == null) {
+                        return;
+                    }
+
+                    log +=
+                        $"{userData.Email},{userData.Password},{userData.Nickname},{userData.Money},{userData.UserType}\n";
                 }
+                writer.Write(log);
             }
-            WriteToFile(fileName, rows);
+
+            writer.Close();
         }
 
-        private void WriteToFile(string fileName, List<string[]> rows) {
-            string filePath = Path.Combine(this.rootDir, fileName);
-            using (StreamWriter writer = new StreamWriter(filePath, false))
-            {
-                foreach (string[] rowData in rows)
-                {
-                    writer.WriteLine(string.Join(",", rowData));
-                }
-            }
-        }
-        public List<T> Read<T>(string fileName) where T : class {
+        public List<T> Read<T>(string fileName) where T : BaseData {
             List<T> rows = new List<T>();
             string filePath = this.rootDir + fileName;
             StreamReader reader = new StreamReader(filePath);
@@ -92,6 +112,22 @@ namespace OOP.Infra {
             reader.Close();
 
             return rows;
+        }
+
+        public void Update<T>(string fileName, T data) where T : BaseData {
+            if (data.GetType() == typeof(UserData)) {
+                List<UserData> rows = this.Read<UserData>(fileName);
+                UserData userData = data as UserData;
+                for (int i = 0; i < rows.Count; i++) {
+                    UserData userRow = rows[i];
+                    if (userRow.Email == userData.Email) {
+                        rows[i] = userData;
+                        break;
+                    }
+                }
+
+                this.Write<UserData>(fileName, rows);
+            }
         }
 
         public int GetFinalId(string fileName) {

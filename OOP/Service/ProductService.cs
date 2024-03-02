@@ -17,6 +17,7 @@ namespace OOP.Service {
         private readonly IUserRepository _userRepository;
 
         public ProductService() {
+            this._userRepository = new UserRepository();
             this._productRepository = new ProductRepository();
         }
 
@@ -24,7 +25,8 @@ namespace OOP.Service {
             List<Product> products = this._productRepository.findSellerProductsByEmail(email);
             List<ProductDto> productDtos = new List<ProductDto>();
             for (int i = 0; i < products.Count; i++) {
-                productDtos.Add(products[i].ConvertDTO());
+                ProductDto product = products[i].ConvertDto() as ProductDto;
+                productDtos.Add(product);
             }
 
             return productDtos;
@@ -37,12 +39,12 @@ namespace OOP.Service {
 
         public object BuyProduct(string email, string productId) {
             User buyer = this._userRepository.FindUserByEmail(email);
-        
+
             if (buyer == null) {
                 Console.WriteLine("잘못된 접근입니다");
                 return null;
             }
-            
+
             Product product = this._productRepository.findProductByProductID(productId);
             if (product == null) {
                 Console.WriteLine("상품이 없습니다.");
@@ -60,7 +62,7 @@ namespace OOP.Service {
             }
 
             User seller = this._userRepository.FindUserByEmail(product.GetSellerEmail());
-            
+
             bool result = buyer.Withdraw(product.GetPrice());
             if (result == false) {
                 Console.WriteLine("오류 발생");
@@ -70,10 +72,10 @@ namespace OOP.Service {
             seller.Income(product.GetPrice());
             product.setSoldOut(buyer.Email);
 
-            // this._userRepository.save();
-            // this._productRepository.save();
-            // this._productRepository.save();
-            
+            this._userRepository.Save(seller);
+            this._userRepository.Save(buyer);
+            this._productRepository.Save(product);
+
             // 각 repository에 save 함수 구현하려고 했는데?
             // 파이썬에서는 base repository에 save가 있었음 >> 여기서는 각각..?
             // save 함수는 database의 update 함수를 이용함
